@@ -1,6 +1,8 @@
 #Djabgo delete model.
 
-book_delete = Book.objects.get(publication_year = 1949)
+from bookshelf.models import Book
+
+book.delete = Book.objects.get(publication_year = 1949)
 
 book_delete.delete()
 
