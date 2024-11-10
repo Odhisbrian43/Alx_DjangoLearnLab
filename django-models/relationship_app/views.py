@@ -15,7 +15,7 @@ def list_books(request):
 
     context = {'book_lists', books}
 
-    return render(request, "relationship_app/lists_books.html", context)
+    return render(request, "relationship_app/list_books.html", context)
 
 
 class Books(DetailView):
