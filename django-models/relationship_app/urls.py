@@ -6,4 +6,7 @@ LibraryDetailView"
 urlpatterns = [
     path('', view=list_books, name='Books_list'),
     path('', Books.as_view(), name='Books')
+    path('', view = views.register, name = 'register')
+    path('', LogoutView.as_view(template_name="logout"))
+    path('', LoginView.as_view(template_name='login'))
 ]
