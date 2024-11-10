@@ -21,3 +21,7 @@ class Librarian(models.Model):
 user = User.objects.create_user('john', 'john@example.com', 'password123')
 
 user = User.objects.get(username='john')
+
+class UserProfile(models.Model):
+    Admin 
+    Member
