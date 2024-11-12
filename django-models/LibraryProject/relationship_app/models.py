@@ -9,6 +9,12 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    class Meta(models.Model):
+        permissions = (
+            can_add_book
+            can_change_book
+            can_delete_book
+        )
 
 class Library(models.Model):
     name = models.CharField(max_length=100)
@@ -29,8 +35,8 @@ class UserProfile(models.Model):
 
     class Roles(models.TextChoices):
         ADMIN = "a", _("Admin")
-    LIBRARIAN = "l", _("Librarian")
-    MEMBER = "m", _("Member")
+        LIBRARIAN = "l", _("Librarian")
+        MEMBER = "m", _("Member")
 
     role = models.CharField(
         max_length=1,
