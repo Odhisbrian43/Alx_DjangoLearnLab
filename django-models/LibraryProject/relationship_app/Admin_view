@@ -1,9 +1,8 @@
-from django.contrib.auth.decorators import permission_required
-from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.views.generic import TemplateView
 
 #Decorator function
 
-@method_decorator(permission_required, name="dispatch")
+@user_passes_test(permission_required, name="Admin")
 class ProtectedView(TemplateView):
     template_name = "admin.html"
