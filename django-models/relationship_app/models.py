@@ -23,13 +23,8 @@ user = User.objects.create_user('john', 'john@example.com', 'password123')
 user = User.objects.get(username='john')
 
 class UserProfile(models.Model):
-    Admin 
-    Member
-
-class New_user(models.Model):
     user = models.OneToOneField(User)
 
-class User_roles(models.Model):
     class Roles(models.TextChoices):
         ADMIN = "a", _("admin")
     LIBRARIAN = "l", _("librarian")
