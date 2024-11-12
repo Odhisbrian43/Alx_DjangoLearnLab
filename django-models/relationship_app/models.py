@@ -25,3 +25,18 @@ user = User.objects.get(username='john')
 class UserProfile(models.Model):
     Admin 
     Member
+
+class New_user(models.Model):
+    user = models.OneToOneField(User)
+
+class User_roles(models.Model):
+    class Roles(models.TextChoices):
+        ADMIN = "a", _("admin")
+    LIBRARIAN = "l", _("librarian")
+    MEMBER = "m", _("member")
+
+    role = models.CharField(
+        max_length=1,
+        choices = role_choices
+    )
+    
