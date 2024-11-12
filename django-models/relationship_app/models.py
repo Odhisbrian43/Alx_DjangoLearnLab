@@ -26,9 +26,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
 
     class Roles(models.TextChoices):
-        ADMIN = "a", _("admin")
-    LIBRARIAN = "l", _("librarian")
-    MEMBER = "m", _("member")
+        ADMIN = "a", _("Admin")
+    LIBRARIAN = "l", _("Librarian")
+    MEMBER = "m", _("Member")
 
     role = models.CharField(
         max_length=1,
