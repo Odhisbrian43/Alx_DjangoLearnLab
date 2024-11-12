@@ -7,7 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 # Create your views here.
 
 def list_books(request):
@@ -49,3 +49,8 @@ class SignUpView(CreateView):
     form_class = UserCreationForm()
     success_url = reverse_lazy('login')
     template_name = 'relationship_app/register.html'
+
+def create(permission_required):
+    relationship_app.can_add_book,
+    relationship_app.can_change_book,
+    relationship_app.can_delete_book
