@@ -24,6 +24,8 @@ user = User.objects.get(username='john')
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
+    Admin
+    Member
 
     class Roles(models.TextChoices):
         ADMIN = "a", _("Admin")
