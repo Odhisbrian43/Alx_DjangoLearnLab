@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=100)
+    return self.name
 
 class Book(models.Model):
     title = models.CharField(max_length=100)
@@ -20,3 +21,19 @@ class Librarian(models.Model):
 user = User.objects.create_user('john', 'john@example.com', 'password123')
 
 user = User.objects.get(username='john')
+
+class UserProfile(models.Model):
+    "Admin",
+    "Member"
+    user = models.OneToOneField(User)
+
+    class Roles(models.TextChoices):
+        ADMIN = "a", _("Admin")
+    LIBRARIAN = "l", _("Librarian")
+    MEMBER = "m", _("Member")
+
+    role = models.CharField(
+        max_length=1,
+        choices = role_choices
+    )
+    
