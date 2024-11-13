@@ -14,5 +14,9 @@ class CustomUser(AbstractUser):
         profile_photo = models.ImageField()
 
 class CustomUserManager(BaseUserManager):
-     create_user
-     create_superuser
+        create_user = 'create user',
+        create_superuser = 'create superuser'
+
+class CustomUserAdmin(BaseUserManager):
+      def ModelAdmin():
+            create_useer = 'Add user'
