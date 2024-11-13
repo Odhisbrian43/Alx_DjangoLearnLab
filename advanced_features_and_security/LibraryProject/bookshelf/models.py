@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 
 class Book(models.Model):
     title = models.CharField(max_length = 200)
@@ -12,3 +12,7 @@ class Book(models.Model):
 class CustomUser(AbstractUser):
         date_of_birth = models.DateField()
         profile_photo = models.ImageField()
+
+class CustomUserManager(BaseUserManager):
+     create_user
+     create_superuser
