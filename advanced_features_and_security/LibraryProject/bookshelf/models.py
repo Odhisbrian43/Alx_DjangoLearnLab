@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission, Group
 
 class Book(models.Model):
     title = models.CharField(max_length = 200)
@@ -20,3 +20,24 @@ class CustomUserManager(BaseUserManager):
 class CustomUserAdmin(BaseUserManager):
       def ModelAdmin():
             create_useer = 'Add user'
+
+can_view = Permission.objects.get(codename = 'can_view')
+
+can_edit = Permission.objects.get(codename = 'can_edit')
+
+can_create = Permission.objects.get(codename = 'can_create')
+
+can_delete = Permission.objects.get(codename = 'can_delete')
+
+Editors = Group.objects.create(name='Editors')
+
+Editors.permissions.add(can_view, can_edit, can_create)
+
+Viewers = Group.objects.create(name='Viewers')
+
+Viewers.permissions.add(can_view)
+
+Admins = Group.objects.create(name='Admins')
+
+Admins.permissions.add(can_view, can_create, can_edit, can_delete)
+
