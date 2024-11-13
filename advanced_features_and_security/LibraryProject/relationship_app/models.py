@@ -43,6 +43,6 @@ class UserProfile(models.Model):
         choices = role_choices
     )
 
-    class Customuser(AbstractBaseUser):
+    class Customuser(AbstractUser):
         date_of_birth = models.DateField()
         profile_photo = models.ImageField()
