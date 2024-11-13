@@ -126,4 +126,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Custom user field specific relationship_app model
 
-AUTH_USER_MODEL = 'relationship_app.models.Customuser'
+AUTH_USER_MODEL = [
+    'relationship_app.models.Customuser',
+    'bookshelf.CustomUser'
+]
