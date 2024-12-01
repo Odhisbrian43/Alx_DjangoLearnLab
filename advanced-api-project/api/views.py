@@ -4,7 +4,7 @@ from .models import Book, Author
 from .serializers import BookSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
