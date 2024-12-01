@@ -11,11 +11,13 @@ class AccountTests(APITestCase):
         """
         url = reverse('add-item')
         factory = APIRequestFactory()
+        snow = User(username='snowb', password='123456789')
         snowb = User(username='snow', password='12345')
         snowb.save()
         data = {'title': 'DabApps', 'author':'1', 'publication_year':'2015-03-27'}
         request = factory.get('/accounts/django-superstars/')
         self.client.force_login(snowb)
+        self.client.login(snow)
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.data, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 1)
