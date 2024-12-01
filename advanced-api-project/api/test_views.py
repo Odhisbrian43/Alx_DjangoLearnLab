@@ -17,7 +17,7 @@ class AccountTests(APITestCase):
         request = factory.get('/accounts/django-superstars/')
         force_authenticate(request, user=snowb)
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 1)
         self.assertEqual(Book.objects.get().title, 'DabApps')
 
