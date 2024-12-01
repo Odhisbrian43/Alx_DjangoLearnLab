@@ -13,9 +13,9 @@ class AccountTests(APITestCase):
         factory = APIRequestFactory()
         snowb = User(username='snow', password='12345')
         snowb.save()
-        data = {'title': 'DabApps', 'author':'Otimbo', 'publication_year':'2015'}
+        data = {'title': 'DabApps', 'author':'1', 'publication_year':'2015-03-27'}
         request = factory.get('/accounts/django-superstars/')
-        force_authenticate(request, user=snowb)
+        self.client.force_login(snowb)
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.data, status.HTTP_201_CREATED)
         self.assertEqual(Book.objects.count(), 1)
