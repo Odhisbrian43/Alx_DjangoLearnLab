@@ -209,7 +209,7 @@ class SearchResultsView(ListView):
 
     def get_queryset(self): # new
         return Post.objects.filter(
-            Q(title__icontains="") | Q(tag__name__icontains="") | Q(content__icontains="")
+            Q(title__icontains="") | Q(tags__name__icontains="") | Q(content__icontains="")
         )
     
 #view for tag.
