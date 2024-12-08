@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ProfileUpdateForm, Usercreationform, UserUpdateForm
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 from django.contrib.auth import authenticate, login, logout, mixins
@@ -209,7 +209,7 @@ class SearchResultsView(ListView):
 
     def get_queryset(self): # new
         return Post.objects.filter(
-            Q(name__icontains="") | Q(state__icontains="")
+            Q(title__icontains="") | Q(tag__name__icontains="") | Q(content__icontains="")
         )
     
 #view for tag.
