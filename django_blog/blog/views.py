@@ -213,6 +213,6 @@ class SearchResultsView(ListView):
         )
     
 #view for tag.
-class TagView(CreateView):
+class PostByTagListView(CreateView):
     model = Tag
     template_name = 'serach.html'
