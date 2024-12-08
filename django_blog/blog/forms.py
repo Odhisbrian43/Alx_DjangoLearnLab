@@ -47,7 +47,7 @@ class PostForm:
         model = Post
         fields = '__all__'
 
-class TagWidget(forms.MultiWidget):
+class TagWidget():
     def __init__(self, attrs=None):
         days = {day: day for day in range(1, 32)}
         months = {month: month for month in range(1, 13)}
