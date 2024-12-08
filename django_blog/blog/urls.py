@@ -13,7 +13,7 @@ urlpatterns = [
     path('post/<int:pk>/', view=views.PostDetailView, name=('details')),
     path('post/<int:pk>/update/', view=views.PostUpdateView, name=('post editing')),
     path('post/<int:pk>/delete/', view=views.PostDeleteView, name=('post delete')),
-    path('post/<int:post_id>/comments/new/', view=views.CommentCreateView, name=('new comment')),
+    path('post/<int:pk>/comments/new/', view=views.CommentCreateView, name=('new comment')),
     path('post/<int:post_id>/comment/list/', view=views.CommentListView, name=('all comments')),
     path('post/<int:post_id>/comment/<int:pk>/update/', view=views.CommentUpdateView, name=('edit comment')),
     path('post/<int:post_id>/comment/<int:pk>/', view=views.CommentDetailView),
