@@ -47,6 +47,18 @@ class PostForm:
         model = Post
         fields = '__all__'
 
+class TagWidget(forms.MultiWidget):
+    def __init__(self, attrs=None):
+        days = {day: day for day in range(1, 32)}
+        months = {month: month for month in range(1, 13)}
+        years = {year: year for year in [2018, 2019, 2020]}
+        widgets = [
+            forms.Select(attrs=attrs, choices=days),
+            forms.Select(attrs=attrs, choices=months),
+            forms.Select(attrs=attrs, choices=years),
+        ]
+        super().__init__(widgets, attrs)
+
     def tag(request, ):
         if request.method == "POST":
             form = PostForm(request.POST)
