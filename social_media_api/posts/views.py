@@ -110,6 +110,7 @@ class PostViewSet(viewsets.ViewSet):
     @permission_classes([IsAuthenticatedOrReadOnly])
     def PostDetailView(request):
         #posts = Post.objects.all()
+        following.all()
         post = request.query_params.get('id')
         #This checks confirms that the specific book exists then returns a view of the book.
         if post is not None:
