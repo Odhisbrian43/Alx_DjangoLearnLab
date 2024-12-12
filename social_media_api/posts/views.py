@@ -4,7 +4,7 @@ from .serializers import PostSerializer, CommentSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters import rest_framework
-from rest_framework import serializers, filters, status, response, viewsets
+from rest_framework import serializers, filters, status, response, viewsets, permissions
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, InvalidPage
@@ -109,11 +109,11 @@ class PostViewSet(viewsets.ViewSet):
     @api_view(['GET'])
     @permission_classes([IsAuthenticatedOrReadOnly])
     def PostDetailView(request):
-        posts = Post.objects.all()
+        #posts = Post.objects.all()
         post = request.query_params.get('id')
         #This checks confirms that the specific book exists then returns a view of the book.
         if post is not None:
-            posts = posts.filter(specific_post = post)
+            posts = Post.objects.filter(author__in=following_users).order_by
             serializer = PostSerializer(posts, many=True)
             return response.Response(serializer.data, status=status.HTTP_200_OK)
         #If the book does not exist the default return is of the book library.
@@ -122,7 +122,7 @@ class PostViewSet(viewsets.ViewSet):
             return response.Response(serializer.data, status=status.HTTP_200_OK)
 
     @api_view(['POST'])
-    @permission_classes([LoginRequiredMixin])
+    @permission_classes([permissions.IsAuthenticated])
     def PostCreateView(request):
 
         post = PostSerializer(data=request.data)
