@@ -1,11 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy
 from django.conf import settings
 from datetime import date
 
 #A user creation that is an extention of Abstractuser with extended fields.
-class User(AbstractBaseUser):
+class User(AbstractUser):
     username = models.CharField(max_length=100, unique=True, blank=True)
     email = models.EmailField(('email address'), unique=True)
     bio = models.TextField()
