@@ -4,7 +4,7 @@ from .serializers import PostSerializer, CommentSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters import rest_framework
-from rest_framework import serializers, filters, status, response, viewsets, permissions
+from rest_framework import generics, serializers, filters, status, response, viewsets, permissions
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, InvalidPage
@@ -143,7 +143,9 @@ class PostViewSet(viewsets.ViewSet):
     @permission_classes([UserPassesTestMixin])
     def PostUpdateView(request, pk):
 
-        post = Post.objects.get(pk=pk)
+        post = generics.get_object_or_404(Post, pk=pk)
+        "Like.objects.get_or_create(user=request.user, post=post)"
+        "Notification.objects.create"
         data = PostSerializer(instance=post, data=request.data)
     
         if data.is_valid():
