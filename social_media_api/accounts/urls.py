@@ -8,6 +8,6 @@ urlpatterns = [
     path('register/', view=Register.as_view(), name='register'),
     path('profile/', view=profile, name="profile"),
     path('profile/follow/<int:user_id>/', view=FollowUnfollowView.as_view(), name='follow'),
-    path('profile/follow/<int:user_id>/', view=FollowUnfollowView.as_view, name='unfollow'),
+    path('profile/unfollow/<int:user_id>/', view=FollowUnfollowView.as_view, name='unfollow'),
 
 ]
