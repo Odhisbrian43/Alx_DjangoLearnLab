@@ -7,7 +7,7 @@ from accounts.models import User
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    content = models.TextField
+    content = models.TextField()
     created_at = models.DateTimeField
     updated_at = models.DateTimeField
 
@@ -17,7 +17,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.OneToOneField(User, on_delete=models.CASCADE)
-    content = models.TextField
+    content = models.TextField()
     created_at = models.DateTimeField
     updated_at = models.DateTimeField
 
