@@ -6,9 +6,9 @@ from notifications.views import LikeUnlikeView
 #Creating routers for for Crud operation views.
 
 router = routers.SimpleRouter()
-router.register(r'posts', views.PostViewSet, basename='post')
-router.register(r'comments', views.CommentViewSet, basename='comments')
-router.register(r'feed', views.PostViewSet, basename='feed')
+router.register(r'posts/', views.PostViewSet, basename='post')
+router.register(r'comments/', views.CommentViewSet, basename='comments')
+router.register(r'feed/', views.PostViewSet, basename='feed')
 urlpatterns = [
     router.urls,
     path('/posts/<int:pk>/like/', view=LikeUnlikeView, name='post likes'),
