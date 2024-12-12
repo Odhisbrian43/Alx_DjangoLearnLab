@@ -7,12 +7,13 @@ from django_filters import rest_framework
 from rest_framework import serializers, filters, status, response, viewsets
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, InvalidPage
+from django.http import Http404
 
 # Create your views here.
 #views for comment CRUD operations.
 
-class CommentViewSet(viewsets.ViewSet):
+class CommentViewSet(viewsets.ModelViewSet):
 
     @api_view(['GET'])
     @permission_classes([IsAuthenticatedOrReadOnly])
@@ -158,3 +159,25 @@ class PostViewSet(viewsets.ViewSet):
         post = get_object_or_404(Post, pk=pk)
         post.delete()
         return response.Response(status=status.HTTP_202_ACCEPTED)
+    
+    @api_view(['GET'])
+    @permission_classes([LoginRequiredMixin])
+    def feedsview(request, page):
+         # Pull the data
+        object_list = Post.objects.all()
+    
+    # Pull the proper items for this page
+        paginator = Paginator(object_list, 100)
+        try:
+            page_obj = paginator.page(page)
+        except InvalidPage:
+        # Return 404 if the page doesn't exist
+            raise Http404
+    
+    # Pass out the data
+        context = {
+        "object_list": page_obj.object_list,
+        "page": page_obj,
+        }
+        template = 'newtwitter_pagination/tracks.json'
+        return render(request, template, context, 'text/javascript')
