@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User
+from .models import CustomUser
 from django.urls import reverse_lazy
 from .forms import Usercreationform, ProfileUpdateForm, UserUpdateForm
 from django.views.generic import CreateView, ListView
@@ -9,7 +9,7 @@ from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from rest_framework.permissions import IsAuthenticatedI
+from rest_framework import permissions
 from django.http import Http404
 from rest_framework import status
 from .serializers import FollowerSerializer
@@ -36,6 +36,7 @@ class LoginView(generics.GenericAPIView):
 
 @login_required
 def profile(request):
+    CustomUser.objects.all()
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,
@@ -59,18 +60,18 @@ def profile(request):
     return render(request, 'users/profile.html', context)
 
 class FollowUnfollowView(generics.GenericAPIView):
-        permission_classes = [IsAuthenticatedI]
+        permission_classes = [permissions.IsAuthenticated]
         
         def current_user(self):
             try:
-                return User.objects.get(user = self.request.user)
-            except User.DoesNotExist:
+                return CustomUser.objects.get(user = self.request.user)
+            except CustomUser.DoesNotExist:
                 raise Http404
             
         def other_user(self,pk):
             try:
-                return User.objects.get(id = pk)
-            except User.DoesNotExist:
+                return CustomUser.objects.get(id = pk)
+            except CustomUser.DoesNotExist:
                 raise Http404
         
         def post(self, request,format=None):    

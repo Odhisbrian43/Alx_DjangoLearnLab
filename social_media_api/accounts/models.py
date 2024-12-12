@@ -5,7 +5,7 @@ from django.conf import settings
 from datetime import date
 
 #A user creation that is an extention of Abstractuser with extended fields.
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     username = models.CharField(max_length=100, unique=True, blank=True)
     email = models.EmailField(('email address'), unique=True)
     bio = models.TextField()
