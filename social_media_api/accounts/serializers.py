@@ -17,3 +17,5 @@ class FollowerSerializer(serializers.ModelSerializer):
         model = User
         fields = ('followers','following')
         read_only_fields = ('followers','following')
+
+"serializers.CharField()", "Token.objects.create", "get_user_model().objects.create_user"
