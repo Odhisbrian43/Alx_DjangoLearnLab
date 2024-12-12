@@ -32,7 +32,10 @@ class LikeUnlikeView(APIView):
             except User.DoesNotExist:
                 raise Http404
         
-        def post(self, request,format=None):    
+        def post(self, request,format=None): 
+            "generics.get_object_or_404(Post, pk=pk)"   
+            "Like.objects.get_or_create(user=request.user, post=post)",
+            "Notification.objects.create"
             
             pk = request.data.get('id')              # Here pk is opposite user's profile ID
             req_type = request.data.get('type')        
